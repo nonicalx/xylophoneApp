@@ -9,57 +9,43 @@ class XylophoneApp extends StatelessWidget {
     player.play('note$soundNum.wav');
   }
 
-  @override
+  Widget buildKey(key) {
+    var keys = [
+      Colors.red,
+      Colors.orange,
+      Colors.yellow,
+      Colors.green,
+      Colors.teal,
+      Colors.blue,
+      Colors.purple
+    ];
+    return Expanded(
+      child: FlatButton(
+        child: SizedBox(width: double.infinity),
+        color: keys[key - 1],
+        onPressed: () {
+          playSound(key);
+        },
+      ),
+    );
+  }
+
+  // @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
             child: Column(
               children: <Widget>[
-                FlatButton(
-                  color: Colors.red,
-                  onPressed: () {
-                    playSound(1);
-                  },
-                ),
-                FlatButton(
-                  color: Colors.orange,
-                  onPressed: () {
-                    playSound(2);
-                  },
-                ),
-                FlatButton(
-                  color: Colors.yellow,
-                  onPressed: () {
-                    playSound(3);
-                  },
-                ),
-                FlatButton(
-                  color: Colors.green,
-                  onPressed: () {
-                    playSound(4);
-                  },
-                ),
-                FlatButton(
-                  color: Colors.teal,
-                  child: Text(''),
-                  onPressed: () {
-                    playSound(5);
-                  },
-                ),
-                FlatButton(
-                  color: Colors.blueAccent,
-                  onPressed: () {
-                    playSound(6);
-                  },
-                ),
-                FlatButton(
-                  color: Colors.purple,
-                  onPressed: () {
-                    playSound(7);
-                  },
-                ),
+                buildKey(1),
+                buildKey(2),
+                buildKey(3),
+                buildKey(4),
+                buildKey(5),
+                buildKey(6),
+                buildKey(7)
               ],
             ),
           ),
@@ -68,3 +54,17 @@ class XylophoneApp extends StatelessWidget {
     );
   }
 }
+
+//  key == 1
+//             ? Colors.red
+//             : key == 2
+//                 ? Colors.orange
+//                 : key == 3
+//                     ? Colors.yellow
+//                     : key == 4
+//                         ? Colors.green
+//                         : key == 5
+//                             ? Colors.teal
+//                             : key == 6
+//                                 ? Colors.blue
+//                                 : key == 7 ? Colors.purple : Colors.black,
